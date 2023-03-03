@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.matIconRegistry.addSvgIcon(
       "google",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/google.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/google.svg")
     );
   }
 
