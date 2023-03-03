@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
 import {ToastrService} from "ngx-toastr";
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
+
   loginForm!: FormGroup;
   loading = false;
   submitted = false;
@@ -18,8 +22,14 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
   ) {
+    this.matIconRegistry.addSvgIcon(
+      "google",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/google.svg")
+    );
   }
 
   ngOnInit(): void {

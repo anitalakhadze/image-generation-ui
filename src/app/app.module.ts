@@ -14,6 +14,9 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AuthenticationService} from "./auth/service/authentication.service";
 import {ToastrModule} from "ngx-toastr";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import {ToastrModule} from "ngx-toastr";
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(),
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    // ToastrModule added
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

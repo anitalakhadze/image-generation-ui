@@ -1,28 +1,63 @@
-<h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="email">E-mail</label>
-    <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
-    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-      <div *ngIf="f['email'].errors['required']">Email is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
-    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-      <div *ngIf="f['password'].errors['required']">Password is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button [disabled]="loading" class="btn btn-primary">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-      Login
-    </button>
-    <a routerLink="/register" class="btn btn-link">Register</a>
+<div class="main-container center">
+  <h2>Login</h2>
 
-    <button type="button" (click)="googleAuth()">
-      Log in with Google
-    </button>
+  <div class="form-group">
+    <form [formGroup]="loginForm">
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label class="label">Enter your email</mat-label>
+        <input formControlName="email" matInput [type]="'text'" name="new-somename" autocomplete="noac">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label class="label">Enter your password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" name="new-somename" autocomplete="noac">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="login-btn"
+              (click)="onSubmit()" [disabled]="loginForm.invalid">
+        Login
+      </button>
+
+      <button mat-raised-button color="primary" class="google-auth-btn"
+              (click)="googleAuth()">
+        Login with Google
+        <mat-icon svgIcon="google"></mat-icon>
+      </button>
+
+      <p>Does not have an account? <a routerLink="/register" class="btn btn-link">Register</a></p>
+
+    </form>
   </div>
-</form>
+</div>
+
+<!--<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
+<!--  <div class="form-group">-->
+<!--    <label for="email">E-mail</label>-->
+<!--    <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />-->
+<!--    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">-->
+<!--      <div *ngIf="f['email'].errors['required']">Email is required</div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="password">Password</label>-->
+<!--    <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />-->
+<!--    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">-->
+<!--      <div *ngIf="f['password'].errors['required']">Password is required</div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <button [disabled]="loading" class="btn btn-primary">-->
+<!--      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>-->
+<!--      Login-->
+<!--    </button>-->
+<!--    <a routerLink="/register" class="btn btn-link">Register</a>-->
+
+<!--    <button type="button" (click)="googleAuth()">-->
+<!--      Log in with Google-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</form>-->
