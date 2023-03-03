@@ -17,47 +17,20 @@
         </button>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="login-btn"
+      <button mat-raised-button color="accent" class="login-btn"
               (click)="onSubmit()" [disabled]="loginForm.invalid">
         Login
       </button>
 
-      <button mat-raised-button color="primary" class="google-auth-btn"
-              (click)="googleAuth()">
-        Login with Google
-        <mat-icon svgIcon="google"></mat-icon>
-      </button>
-
-      <p>Does not have an account? <a routerLink="/register" class="btn btn-link">Register</a></p>
+      <p>Do not have an account? <a routerLink="/register" class="btn btn-link">Register</a></p>
 
     </form>
+
+    <button mat-raised-button class="google-auth-btn" color="primary"
+            (click)="googleAuth()">
+      Login with Google
+      <mat-icon svgIcon="google"></mat-icon>
+    </button>
+
   </div>
 </div>
-
-<!--<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
-<!--  <div class="form-group">-->
-<!--    <label for="email">E-mail</label>-->
-<!--    <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />-->
-<!--    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">-->
-<!--      <div *ngIf="f['email'].errors['required']">Email is required</div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="form-group">-->
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />-->
-<!--    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">-->
-<!--      <div *ngIf="f['password'].errors['required']">Password is required</div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="form-group">-->
-<!--    <button [disabled]="loading" class="btn btn-primary">-->
-<!--      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>-->
-<!--      Login-->
-<!--    </button>-->
-<!--    <a routerLink="/register" class="btn btn-link">Register</a>-->
-
-<!--    <button type="button" (click)="googleAuth()">-->
-<!--      Log in with Google-->
-<!--    </button>-->
-<!--  </div>-->
-<!--</form>-->

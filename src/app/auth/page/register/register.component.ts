@@ -9,6 +9,8 @@ import {AuthenticationService} from "../../service/authentication.service";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  hide: boolean = false;
+
   registerForm!: FormGroup;
   loading = false;
   submitted = false;
