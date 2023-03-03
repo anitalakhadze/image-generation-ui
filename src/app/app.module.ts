@@ -17,6 +17,7 @@ import {ToastrModule} from "ngx-toastr";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatToolbarModule,
     // ToastrModule added
   ],
   providers: [AuthenticationService],

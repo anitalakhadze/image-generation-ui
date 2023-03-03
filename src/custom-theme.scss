@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$image-generation-ui-primary: mat.define-palette(mat.$grey-palette, 900, 500, 800);
-$image-generation-ui-accent: mat.define-palette(mat.$indigo-palette, 500, 400, 700);
+$image-generation-ui-primary: mat.define-palette(mat.$indigo-palette, 400, 400, 700);
+$image-generation-ui-accent: mat.define-palette(mat.$grey-palette, 900, 500, 800);
 
 // The warn palette is optional (defaults to red).
 $image-generation-ui-warn: mat.define-palette(mat.$red-palette,  300, 200, 400);

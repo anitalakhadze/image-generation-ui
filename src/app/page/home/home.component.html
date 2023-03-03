@@ -1,9 +1,19 @@
-<p>home works!</p>
-
-<h1 *ngIf="authService.isUserAuthenticated()">{{authService.getLoggedInUser().currentUser?.email}} is logged in</h1>
-
-<div>
-  <button (click)="signOut()">
-    Sign Out
+<mat-toolbar color="primary">
+<!--  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
+  <span class="example-spacer"></span>
+  <span *ngIf="authService.isUserAuthenticated()">{{authService.getLoggedInUser().currentUser?.email}}</span>
+  <button mat-icon-button (click)="signOut()"
+          aria-label="Example icon-button with share icon">
+    <mat-icon>logout</mat-icon>
   </button>
+</mat-toolbar>
+
+<div class="iframe-container">
+  <iframe class="iframe"
+          id="gradio-iframe"
+          [src]="iframeUrl"
+          *ngIf="displayIframe">
+  </iframe>
 </div>

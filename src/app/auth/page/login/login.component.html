@@ -1,4 +1,4 @@
-<div class="main-container center">
+<div class="main-form-container center">
   <h2>Login</h2>
 
   <div class="form-group">
@@ -17,7 +17,7 @@
         </button>
       </mat-form-field>
 
-      <button mat-raised-button color="accent" class="login-btn"
+      <button mat-raised-button color="primary" class="login-btn"
               (click)="onSubmit()" [disabled]="loginForm.invalid">
         Login
       </button>
@@ -26,7 +26,7 @@
 
     </form>
 
-    <button mat-raised-button class="google-auth-btn" color="primary"
+    <button mat-raised-button class="google-auth-btn" color="accent"
             (click)="googleAuth()">
       Login with Google
       <mat-icon svgIcon="google"></mat-icon>
