@@ -57,4 +57,17 @@ export class LoginComponent implements OnInit {
         this.loginForm.controls['password'].setErrors(null);
       });
   }
+
+  googleAuth() {
+    this.authService.doGoogleLogin()
+      .then(() => {
+        this.router.navigate(['home']);
+      }, err => {
+        this.loading = false;
+        this.toastr.error(err.message);
+        this.loginForm.reset();
+        this.loginForm.controls['email'].setErrors(null);
+        this.loginForm.controls['password'].setErrors(null);
+      });
+  }
 }

@@ -3,6 +3,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Auth, getAuth} from "@angular/fire/auth";
 import {environment} from "../../../environments/environment";
 import {initializeApp} from "@angular/fire/app";
+import firebase from "firebase/compat/app";
 
 @Injectable({
   providedIn: 'root'
@@ -36,22 +37,38 @@ export class AuthenticationService {
     const app = initializeApp(environment.firebaseConfig);
     return getAuth(app);
   }
-
-  // doGoogleLogin(){
-  //   return new Promise<any>((resolve, reject) => {
-  //     let provider = new firebase.auth.GoogleAuthProvider();
-  //     provider.addScope('profile');
-  //     provider.addScope('email');
-  //     this.afAuth.auth
-  //       .signInWithPopup(provider)
-  //       .then(res => {
-  //         resolve(res);
-  //       }, err => {
-  //         console.log(err);
-  //         reject(err);
-  //       })
-  //   })
+  //
+  // GoogleAuth() {
+  //   return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   // }
+  //
+  // // Auth logic to run auth providers
+  // AuthLogin(provider: firebase.auth.AuthProvider) {
+  //   return this.afAuth
+  //     .signInWithPopup(provider)
+  //     .then((result) => {
+  //       console.log('You have been successfully logged in!');
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+
+  doGoogleLogin(){
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afAuth
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
+    })
+  }
 
   // Sign up with email/password
   signUp(email: string, password: string) {
