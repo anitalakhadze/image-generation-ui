@@ -19,7 +19,8 @@
 
       <button mat-raised-button color="primary" class="login-btn"
               (click)="onSubmit()" [disabled]="registerForm.invalid">
-        Register
+        <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+        <span *ngIf="!loading">Register</span>
       </button>
     </form>
 

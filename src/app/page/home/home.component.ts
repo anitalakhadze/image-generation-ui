@@ -11,8 +11,9 @@ import {environment} from "../../../environments/environment";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  displayIframe = true;
+  loading = false;
   iframeUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.apiUrl);
+  iframeLoading = true;
 
   constructor(
     public authService: AuthenticationService,
@@ -23,11 +24,14 @@ export class HomeComponent {
   }
 
   signOut() {
+    this.loading = true;
     this.closeIframe();
     this.authService.signOut()
       .then(() => {
+        this.loading = false;
         this.router.navigate(['login']);
       }, err => {
+        this.loading = false;
         console.log(err);
         this.toastr.error(err.message);
       });

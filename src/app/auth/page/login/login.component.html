@@ -19,7 +19,8 @@
 
       <button mat-raised-button color="primary" class="login-btn"
               (click)="onSubmit()" [disabled]="loginForm.invalid">
-        Login
+        <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+        <span *ngIf="!loading">Login</span>
       </button>
 
       <p>Do not have an account? <a routerLink="/register" class="btn btn-link">Register</a></p>
@@ -28,8 +29,9 @@
 
     <button mat-raised-button class="google-auth-btn" color="accent"
             (click)="googleAuth()">
-      Login with Google
+      <span *ngIf="!loadingGAuth">Login with Google</span>
       <mat-icon svgIcon="google"></mat-icon>
+      <mat-spinner *ngIf="loadingGAuth" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
     </button>
 
   </div>

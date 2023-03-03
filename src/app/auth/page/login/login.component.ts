@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   loading = false;
-  submitted = false;
+  loadingGAuth = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
     this.loading = true;
     this
       .authService
@@ -58,6 +57,7 @@ export class LoginComponent implements OnInit {
         this.f['password'].value
       )
       .then(() => {
+        this.loading = false;
         this.router.navigate(['home']);
       }, err => {
         this.loading = false;
@@ -69,11 +69,13 @@ export class LoginComponent implements OnInit {
   }
 
   googleAuth() {
+    this.loadingGAuth = true;
     this.authService.doGoogleLogin()
       .then(() => {
+        this.loadingGAuth = false;
         this.router.navigate(['home']);
       }, err => {
-        this.loading = false;
+        this.loadingGAuth = false;
         this.toastr.error(err.message);
         this.loginForm.reset();
         this.loginForm.controls['email'].setErrors(null);

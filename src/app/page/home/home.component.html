@@ -11,9 +11,11 @@
 </mat-toolbar>
 
 <div class="iframe-container">
+  <mat-spinner color="primary" *ngIf="iframeLoading"></mat-spinner>
   <iframe class="iframe"
+          (load)="iframeLoading=false"
+          [class.d-none]="iframeLoading"
           id="gradio-iframe"
-          [src]="iframeUrl"
-          *ngIf="displayIframe">
+          [src]="iframeUrl">
   </iframe>
 </div>

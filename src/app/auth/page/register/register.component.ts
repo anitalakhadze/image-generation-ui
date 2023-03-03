@@ -13,7 +13,6 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
   loading = false;
-  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +34,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
     this.loading = true;
     this
       .authService
@@ -44,6 +42,7 @@ export class RegisterComponent implements OnInit {
         this.f['password'].value
       )
       .then(r => {
+        this.loading = false;
         console.log(r);
         this.router.navigate(['login'])
           .then(() => console.log('User has been registered'))
