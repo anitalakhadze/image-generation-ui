@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,15 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
+    private toastr: ToastrService
   ) {
   }
 
   ngOnInit(): void {
+    if (this.authService.isUserAuthenticated()) {
+      this.authService.signOut();
+    }
+
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -41,19 +47,14 @@ export class LoginComponent implements OnInit {
         this.f['email'].value,
         this.f['password'].value
       )
-      .then(r => {
-        console.log(r);
-        this.router.navigate(['home'])
-          .then(() => console.log('User has signed in'))
+      .then(() => {
+        this.router.navigate(['home']);
+      }, err => {
+        this.loading = false;
+        this.toastr.error(err.message);
+        this.loginForm.reset();
+        this.loginForm.controls['email'].setErrors(null);
+        this.loginForm.controls['password'].setErrors(null);
       });
-      // .subscribe({
-      //   next: (data) => {
-      //     // @ts-ignore
-      //     let token = data['token'];
-      //     console.log(token);
-      //     this.router.navigate(['home'])
-      //   },
-      //   error: () => console.log('error')
-      // });
   }
 }

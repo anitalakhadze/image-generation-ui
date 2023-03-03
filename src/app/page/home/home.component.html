@@ -1,1 +1,9 @@
 <p>home works!</p>
+
+<h1 *ngIf="authService.isUserAuthenticated()">{{authService.getLoggedInUser().currentUser?.email}} is logged in</h1>
+
+<div>
+  <button (click)="signOut()">
+    Sign Out
+  </button>
+</div>

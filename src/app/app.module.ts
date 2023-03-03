@@ -13,6 +13,7 @@ import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AuthenticationService} from "./auth/service/authentication.service";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {AuthenticationService} from "./auth/service/authentication.service";
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
