@@ -33,7 +33,7 @@ export class HomeComponent {
       }, err => {
         this.loading = false;
         console.log(err);
-        this.toastr.error(err.message);
+        this.toastr.error(err.message, 'ERROR');
       });
   }
 

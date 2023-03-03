@@ -17,13 +17,13 @@ export class AuthenticationService {
 
   getCurrentUser(){
     return new Promise<any>((resolve, reject) => {
-      var user = getAuth().onAuthStateChanged(function(user){
+      getAuth().onAuthStateChanged(function(user){
         if (user) {
           resolve(user);
         } else {
           reject('No user logged in');
         }
-      })
+      });
     })
   }
 
@@ -103,5 +103,65 @@ export class AuthenticationService {
           }, err => reject(err))
       }
     });
+  }
+
+  getSignInErrorMessage(err: { code: any; message: any; }): string {
+    const errorCode = err.code;
+    let errorMessage = err.message;
+    switch (errorCode) {
+      case 'auth/user-disabled':
+        errorMessage = 'The user corresponding to the given email has been disabled';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'The email address is not valid';
+        break;
+      case 'auth/wrong-password':
+        errorMessage = 'Password is invalid for the given email';
+        break;
+      case 'auth/user-not-found':
+        errorMessage = 'There is no user corresponding to the given email';
+        break;
+    }
+    return errorMessage;
+  }
+
+  getGAuthErrorMessage(err: { code: any; message: any; }): string {
+    const errorCode = err.code;
+    let errorMessage = err.message;
+    switch (errorCode) {
+      case 'auth/cancelled-popup-request':
+        errorMessage = 'Only one popup request is allowed at one time';
+        break;
+      case 'auth/popup-blocked':
+        errorMessage = 'Popup was blocked by the browser';
+        break;
+      case 'auth/popup-closed-by-user':
+        errorMessage = 'Popup window is closed by the user without completing the sign in to the provider';
+        break;
+      case 'auth/account-exists-with-different-credential':
+        errorMessage = 'There already exists an account with the email address asserted by the credential';
+        break;
+    }
+    return errorMessage;
+  }
+
+  getSignupErrorMessage(err: { code: any; message: any; }): string {
+    const errorCode = err.code;
+    let errorMessage = err.message;
+    switch (errorCode) {
+      case 'auth/email-already-in-use':
+        errorMessage = 'There already exists an account with the given email address';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'The email address is not valid';
+        break;
+      case 'auth/operation-not-allowed':
+        errorMessage = 'Email/password accounts are not enabled';
+        break;
+      case 'auth/weak-password':
+        errorMessage = 'The password is not strong enough';
+        break;
+    }
+    return errorMessage;
   }
 }

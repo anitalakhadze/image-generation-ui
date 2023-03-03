@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
+    private toastr: ToastrService
   ) {
   }
 
@@ -41,12 +43,16 @@ export class RegisterComponent implements OnInit {
         this.f['email'].value,
         this.f['password'].value
       )
-      .then(r => {
+      .then(() => {
         this.loading = false;
-        console.log(r);
         this.router.navigate(['login'])
           .then(() => console.log('User has been registered'))
+      }, err => {
+        this.loading = false;
+        this.toastr.error(this.authService.getSignupErrorMessage(err), 'ERROR');
+        this.registerForm.reset();
+        this.registerForm.controls['email'].setErrors(null);
+        this.registerForm.controls['password'].setErrors(null);
       });
   }
-
 }

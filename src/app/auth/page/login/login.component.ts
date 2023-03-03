@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       }, err => {
         this.loading = false;
-        this.toastr.error(err.message);
+        this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
         this.loginForm.reset();
         this.loginForm.controls['email'].setErrors(null);
         this.loginForm.controls['password'].setErrors(null);
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['home']);
       }, err => {
         this.loadingGAuth = false;
-        this.toastr.error(err.message);
+        this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
         this.loginForm.reset();
         this.loginForm.controls['email'].setErrors(null);
         this.loginForm.controls['password'].setErrors(null);
