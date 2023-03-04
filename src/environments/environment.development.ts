@@ -1,6 +1,7 @@
 export const environment = {
-  apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/',
+  apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/ui',
   actionUrl: 'http://localhost:4200/login',
+  apiHealthCheckUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/health',
   firebaseConfig: {
     apiKey: "AIzaSyCoAZnqkIyqfbb_a1fKQQOrUjlt9WhI0bM",
     authDomain: "image-generation-21969.firebaseapp.com",

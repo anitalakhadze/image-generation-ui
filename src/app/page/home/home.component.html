@@ -1,20 +1,18 @@
 <mat-toolbar color="primary">
-<!--  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">-->
-<!--    <mat-icon>menu</mat-icon>-->
-<!--  </button>-->
   <span class="example-spacer"></span>
-  <span *ngIf="authService.isUserAuthenticated()">{{authService.getLoggedInUser().currentUser?.email}}</span>
-  <button mat-icon-button (click)="signOut()"
-          aria-label="Example icon-button with share icon">
+  <span *ngIf="authService.isUserAuthenticated()">
+    {{authService.getLoggedInUser().currentUser?.email}}
+  </span>
+  <button mat-icon-button (click)="signOut()">
     <mat-icon>logout</mat-icon>
+    <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
   </button>
 </mat-toolbar>
 
 <div class="iframe-container">
   <mat-spinner class="primary-spinner center" *ngIf="iframeLoading"></mat-spinner>
   <iframe class="iframe"
-          (load)="iframeLoading=false"
-          [class.d-none]="iframeLoading"
+          *ngIf="!iframeLoading"
           id="gradio-iframe"
           [src]="iframeUrl">
   </iframe>
