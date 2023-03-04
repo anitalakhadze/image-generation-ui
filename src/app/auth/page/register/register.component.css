@@ -7,7 +7,7 @@
   border-radius: 10px;
 }
 
-.login-btn {
+.login-btn, .google-auth-btn {
   width: 80%;
   font-weight: bold;
   font-size: medium;

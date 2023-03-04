@@ -19,6 +19,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -27,22 +28,23 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RegisterComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    ToastrModule.forRoot(),
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    // ToastrModule added
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        ToastrModule.forRoot(),
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatDividerModule,
+        // ToastrModule added
+    ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
