@@ -43,7 +43,7 @@ export class ResetPasswordComponent implements OnInit {
       .then(() => {
         this.loading = false;
         this.toastr.success('Reset link has been successfully sent to E-mail', 'SUCCESS');
-        // this.router.navigate(['home']);
+        this.router.navigate(['login']);
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
