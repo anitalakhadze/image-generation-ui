@@ -26,22 +26,22 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.httpClient.get(environment.apiHealthCheckUrl)
-      .subscribe({
-        next: () => {
-          this.iframeLoading = false;
-          this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.apiUrl);
-        },
-        error: () => {
-          this.iframeLoading = false;
-          this.toastr.error("Error while trying to connect to API", 'ERROR')
-        }
-      })
+    // this.httpClient.get(environment.apiHealthCheckUrl)
+    //   .subscribe({
+    //     next: () => {
+    //       this.iframeLoading = false;
+    //       this.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.apiUrl);
+    //     },
+    //     error: () => {
+    //       this.iframeLoading = false;
+    //       this.toastr.error("Error while trying to connect to API", 'ERROR')
+    //     }
+    //   })
   }
 
   signOut() {
     this.loading = true;
-    this.closeIframe();
+    // this.closeIframe();
     this.authService.signOut()
       .then(() => {
         this.loading = false;

@@ -30,7 +30,7 @@ import { UserManagementComponent } from './auth/page/user-management/user-manage
     RegisterComponent,
     HomeComponent,
     ResetPasswordComponent,
-    UserManagementComponent
+    UserManagementComponent,
   ],
     imports: [
         BrowserModule,

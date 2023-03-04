@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -48,9 +49,11 @@ export class LoginComponent implements OnInit {
         this.f['email'].value,
         this.f['password'].value
       )
-      .then(() => {
+      .then((res) => {
         this.loading = false;
         this.router.navigate(['home']);
+        console.log(res)
+        window.open(environment.apiUrl);
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
@@ -63,9 +66,11 @@ export class LoginComponent implements OnInit {
   googleAuth() {
     this.loadingGAuth = true;
     this.authService.doGoogleLogin()
-      .then(() => {
+      .then((res) => {
         this.loadingGAuth = false;
         this.router.navigate(['home']);
+        console.log(res)
+        window.open(environment.apiUrl);
       }, err => {
         this.loadingGAuth = false;
         this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
