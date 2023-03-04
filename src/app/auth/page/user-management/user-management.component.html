@@ -1,0 +1,47 @@
+<ng-container *ngIf="actionCodeChecked" [ngSwitch]="mode">
+  <!-- Reset Password -->
+  <ng-container *ngSwitchCase="'resetPassword'">
+    <div class="main-form-container center">
+      <h2>Reset Password</h2>
+
+      <div class="form-group">
+        <form [formGroup]="resetPasswordForm">
+
+          <mat-form-field appearance="fill" class="form-field">
+            <input placeholder="New Password" formControlName="newPassword"
+                   matInput [type]="'text'" name="new-somename" autocomplete="noac">
+            <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
+              <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <input placeholder="Confirm Password" formControlName="confirmPassword"
+                   matInput [type]="'text'" name="new-somename" autocomplete="noac">
+            <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+              <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="user-mgn-btn"
+                  (click)="handleResetPassword()" [disabled]="resetPasswordForm.invalid">
+            <mat-spinner *ngIf="loadingResetPassword" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+            <span *ngIf="!loadingResetPassword">Reset</span>
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </ng-container>
+  <!-- Recover Email -->
+  <ng-container *ngSwitchCase="'recoverEmail'">
+  </ng-container>
+
+  <!-- Verify Email -->
+  <ng-container *ngSwitchCase="'verifyEmail'">
+  </ng-container>
+</ng-container>

@@ -92,6 +92,34 @@ export class AuthenticationService {
     })
   }
 
+  // Reset email
+  resetPasswordInit(email: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.sendPasswordResetEmail(email)
+        .then(res => {
+          resolve(res);
+        }, err => reject(err))
+    })
+  }
+
+  verifyPasswordResetCode(actionCode: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.verifyPasswordResetCode(actionCode)
+        .then(res => {
+          resolve(res);
+        }, err => reject(err))
+    })
+  }
+
+  confirmPasswordReset(confirmationCode: string, newPassword: string) {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.confirmPasswordReset(confirmationCode, newPassword)
+        .then(res => {
+          resolve(res);
+        }, err => reject(err))
+    })
+  }
+
   /* Sign out */
   signOut() {
     // return this.afAuth.signOut();
