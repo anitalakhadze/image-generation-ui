@@ -9,7 +9,7 @@
 
           <mat-form-field appearance="fill" class="form-field">
             <input placeholder="New Password" formControlName="newPassword"
-                   matInput [type]="'text'" name="new-somename" autocomplete="noac">
+                   matInput [type]="hideNewPassword ? 'password' : 'text'" name="new-somename" autocomplete="noac">
             <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
               <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -18,7 +18,7 @@
 
           <mat-form-field appearance="fill" class="form-field">
             <input placeholder="Confirm Password" formControlName="confirmPassword"
-                   matInput [type]="'text'" name="new-somename" autocomplete="noac">
+                   matInput [type]="hideConfirmPassword ? 'password' : 'text'" name="new-somename" autocomplete="noac">
             <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
               <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
