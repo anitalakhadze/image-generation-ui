@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         this.loading = false;
         this.router.navigate(['home']);
-        console.log(res)
-        window.open(environment.apiUrl);
+        console.log(this.authService.getLoggedInUser().currentUser?.uid)
+        window.open(environment.apiUrl, '_blank');
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
@@ -69,8 +69,8 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         this.loadingGAuth = false;
         this.router.navigate(['home']);
-        console.log(res)
-        window.open(environment.apiUrl);
+        console.log(this.authService.getLoggedInUser().currentUser?.uid)
+        window.open(environment.apiUrl, '_blank');
       }, err => {
         this.loadingGAuth = false;
         this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
