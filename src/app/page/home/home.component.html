@@ -1,19 +1,26 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="accent">
+
   <span class="example-spacer"></span>
-  <span *ngIf="authService.isUserAuthenticated()">
-    {{authService.getLoggedInUser().currentUser?.email}}
-  </span>
-  <button mat-icon-button (click)="signOut()">
+
+  <button mat-raised-button (click)="signOut()" color="primary">
+    <span>Sign out</span>
     <mat-icon>logout</mat-icon>
     <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
   </button>
+
 </mat-toolbar>
 
-<div class="iframe-container">
-  <mat-spinner class="primary-spinner center" *ngIf="iframeLoading"></mat-spinner>
-  <iframe class="iframe"
-          *ngIf="!iframeLoading"
-          id="gradio-iframe"
-          [src]="iframeUrl">
-  </iframe>
+<div class="center" style="text-align: center">
+  <h1>Welcome {{authService.getLoggedInUser().currentUser?.email}}!</h1>
+  <h3>You will be redirected to FollowFox.ai</h3>
 </div>
+
+
+<!--<div class="iframe-container">-->
+<!--  <mat-spinner class="primary-spinner center" *ngIf="iframeLoading"></mat-spinner>-->
+<!--  <iframe class="iframe"-->
+<!--          *ngIf="!iframeLoading"-->
+<!--          id="gradio-iframe"-->
+<!--          [src]="iframeUrl">-->
+<!--  </iframe>-->
+<!--</div>-->

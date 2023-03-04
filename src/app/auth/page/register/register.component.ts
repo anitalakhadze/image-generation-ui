@@ -46,8 +46,8 @@ export class RegisterComponent implements OnInit {
       )
       .then(() => {
         this.loading = false;
-        this.router.navigate(['login'])
-          .then(() => console.log('User has been registered'))
+        this.toastr.success('You have successfully signed up', 'SUCCESS')
+        this.router.navigate(['login']);
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignupErrorMessage(err), 'ERROR');
