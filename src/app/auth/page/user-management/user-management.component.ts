@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../service/authentication.service";
 import {Subject, takeUntil} from "rxjs";
@@ -16,8 +16,8 @@ export enum UserManagementActions {
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css']
 })
-export class UserManagementComponent implements OnInit {
-  private ngUnsubscribe: Subject<any> = new Subject();
+export class UserManagementComponent implements OnInit, OnDestroy {
+  ngUnsubscribe: Subject<any> = new Subject<any>();
 
   hideNewPassword = true;
   hideConfirmPassword = true;
@@ -79,6 +79,14 @@ export class UserManagementComponent implements OnInit {
           }
         }
       })
+  }
+
+  ngOnDestroy() {
+    // End all subscriptions listening to ngUnsubscribe
+    // to avoid memory leaks.
+    // @ts-ignore
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   // Convenience getter for easy access to form fields
