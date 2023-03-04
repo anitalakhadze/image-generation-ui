@@ -10,7 +10,8 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  hide: boolean = false;
+  hide: boolean = true;
+  loadingGAuth = false;
 
   registerForm!: FormGroup;
   loading = false;
@@ -50,6 +51,21 @@ export class RegisterComponent implements OnInit {
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignupErrorMessage(err), 'ERROR');
+        this.registerForm.reset();
+        this.registerForm.controls['email'].setErrors(null);
+        this.registerForm.controls['password'].setErrors(null);
+      });
+  }
+
+  googleAuth() {
+    this.loadingGAuth = true;
+    this.authService.doGoogleLogin()
+      .then(() => {
+        this.loadingGAuth = false;
+        this.router.navigate(['home']);
+      }, err => {
+        this.loadingGAuth = false;
+        this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
         this.registerForm.reset();
         this.registerForm.controls['email'].setErrors(null);
         this.registerForm.controls['password'].setErrors(null);

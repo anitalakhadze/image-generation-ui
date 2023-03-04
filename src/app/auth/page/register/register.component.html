@@ -1,17 +1,17 @@
 <div class="main-form-container center">
-  <h2>Register</h2>
+  <h2>Signup</h2>
 
   <div class="form-group">
     <form [formGroup]="registerForm">
 
       <mat-form-field appearance="fill" class="form-field">
-        <mat-label class="label">Enter your email</mat-label>
-        <input formControlName="email" matInput [type]="'text'" name="new-somename" autocomplete="noac">
+<!--        <mat-label class="label">Enter your email</mat-label>-->
+        <input placeholder="E-mail" formControlName="email" matInput [type]="'text'" name="new-somename" autocomplete="noac">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form-field">
-        <mat-label class="label">Enter your password</mat-label>
-        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" name="new-somename" autocomplete="noac">
+<!--        <mat-label class="label">Enter your password</mat-label>-->
+        <input placeholder="Password" formControlName="password" matInput [type]="hide ? 'password' : 'text'" name="new-somename" autocomplete="noac">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -20,9 +20,22 @@
       <button mat-raised-button color="primary" class="login-btn"
               (click)="onSubmit()" [disabled]="registerForm.invalid">
         <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
-        <span *ngIf="!loading">Register</span>
+        <span *ngIf="!loading">Signup</span>
       </button>
     </form>
+
+    <p>Already have an account? <a routerLink="/login" class="btn btn-link">Login</a></p>
+
+    <div style="margin: 20px">
+      <mat-divider></mat-divider>
+    </div>
+
+    <button mat-raised-button class="google-auth-btn" color="accent"
+            (click)="googleAuth()">
+      <span *ngIf="!loadingGAuth">Login with Google</span>
+      <mat-icon svgIcon="google"></mat-icon>
+      <mat-spinner *ngIf="loadingGAuth" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+    </button>
 
   </div>
 </div>

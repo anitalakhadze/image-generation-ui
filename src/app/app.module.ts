@@ -19,30 +19,36 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDividerModule} from "@angular/material/divider";
+import {ResetPasswordComponent} from './auth/page/reset-password/reset-password.component';
+import { UserManagementComponent } from './auth/page/user-management/user-management.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ResetPasswordComponent,
+    UserManagementComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    ToastrModule.forRoot(),
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    // ToastrModule added
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        ToastrModule.forRoot(),
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatDividerModule,
+        // ToastrModule added
+    ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })

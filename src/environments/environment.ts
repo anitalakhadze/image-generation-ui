@@ -1,5 +1,6 @@
 export const environment = {
   apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/',
+  actionUrl: 'https://anitalakhadze.github.io/image-generation-ui/login',
   firebaseConfig: {
     apiKey: "AIzaSyCoAZnqkIyqfbb_a1fKQQOrUjlt9WhI0bM",
     authDomain: "image-generation-21969.firebaseapp.com",
