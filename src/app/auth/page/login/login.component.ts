@@ -69,8 +69,16 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         this.loadingGAuth = false;
         this.router.navigate(['home']);
-        console.log(this.authService.getLoggedInUser().currentUser?.uid)
-        window.open(environment.apiUrl, '_blank');
+        this.authService.getLoggedInUser().currentUser?.getIdToken()
+        .then(
+          (id_token) => {
+            document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+          }
+        ).catch(
+          (err) => {
+            console.log("Kiss this error, noob", err);
+          }
+        )
       }, err => {
         this.loadingGAuth = false;
         this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
