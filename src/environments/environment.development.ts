@@ -1,7 +1,8 @@
 export const environment = {
-  apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/ui',
+  apiUrl: 'http://0.0.0.0:8080/ui',
   actionUrl: 'http://localhost:4200/login',
-  apiHealthCheckUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/health',
+  apiAuthUrl: 'http://0.0.0.0:8080/auth',
+  apiHealthCheckUrl: 'http://0.0.0.0:8080/health',
   firebaseConfig: {
     apiKey: "AIzaSyBNRoRqMBVDJoWRtOikqK76KVP6HH4IROc",
     authDomain: "tornikeo.firebaseapp.com",
