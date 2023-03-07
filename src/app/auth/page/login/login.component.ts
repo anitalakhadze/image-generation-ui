@@ -49,11 +49,20 @@ export class LoginComponent implements OnInit {
         this.f['email'].value,
         this.f['password'].value
       )
-      .then((res) => {
+      .then(() => {
         this.loading = false;
         this.router.navigate(['home']);
-        console.log(this.authService.getLoggedInUser().currentUser?.uid)
-        window.open(environment.apiUrl, '_blank');
+        this.authService.getLoggedInUser().currentUser?.getIdToken()
+          .then(
+            (id_token) => {
+              document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+            }
+          ).catch(
+          (err) => {
+            console.log(err)
+            this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
+          }
+        )
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
@@ -66,17 +75,18 @@ export class LoginComponent implements OnInit {
   googleAuth() {
     this.loadingGAuth = true;
     this.authService.doGoogleLogin()
-      .then((res) => {
+      .then(() => {
         this.loadingGAuth = false;
         this.router.navigate(['home']);
         this.authService.getLoggedInUser().currentUser?.getIdToken()
-        .then(
-          (id_token) => {
-            document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
-          }
-        ).catch(
+          .then(
+            (id_token) => {
+              document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+            }
+          ).catch(
           (err) => {
-            console.log("Kiss this error, noob", err);
+            console.log(err)
+            this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
           }
         )
       }, err => {
