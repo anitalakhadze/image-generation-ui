@@ -114,9 +114,9 @@
   </div>
 
   <div class="right-container">
-    <div class="images-container">
+    <div class="images-container" *ngIf="this.images">
       <mat-grid-list cols="2" rowHeight="2:2">
-        <mat-grid-tile *ngFor="let image of images">
+        <mat-grid-tile *ngFor="let image of this.images.images">
           <input type="image"
                  [height]="275"
                  [width]="300"
