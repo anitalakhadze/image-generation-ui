@@ -115,16 +115,13 @@
 
   <div class="right-container">
     <div class="images-container">
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <div *ngFor="let image of images">
-          <!--        <p>{{image.image_base64}}</p>-->
-          <mat-grid-tile style="width: 300px; height: 275px">
-            <input type="image"
-                   [height]="275"
-                   [width]="300"
-                   [src]="'data:image/jpg;base64,' + image.image_base64">
-          </mat-grid-tile>
-        </div>
+      <mat-grid-list cols="2" rowHeight="2:2">
+        <mat-grid-tile *ngFor="let image of images">
+          <input type="image"
+                 [height]="275"
+                 [width]="300"
+                 [src]="'data:image/jpg;base64,' + image.image_base64" alt="">
+        </mat-grid-tile>
       </mat-grid-list>
     </div>
 

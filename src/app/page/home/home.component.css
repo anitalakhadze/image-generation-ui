@@ -65,13 +65,13 @@
 }
 
 .left-container {
-  width: 40%;
+  width: 50%;
   height: 100%;
   float: left;
 }
 
 .right-container {
-  width: 60%;
+  width: 50%;
   height: 100%;
   float: right;
 }
@@ -95,10 +95,9 @@ mat-slider {
   height: 45px;
 }
 
-
 .images-container {
+  float: right;
   padding: 30px;
-  border: 3px solid black;
-  width: 600px;
+  width: 80%;
   height: 100%;
 }
