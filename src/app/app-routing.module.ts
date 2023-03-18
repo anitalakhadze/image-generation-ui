@@ -15,13 +15,13 @@ export const redirectAnonymousTo = (redirect: any[]) =>
 const redirectUnauthorizedToLogin = () => redirectAnonymousTo(['login']);
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'password/reset', component: ResetPasswordComponent},
   {path: 'user/management', component: UserManagementComponent},
   {path: 'home', component: HomeComponent, canActivate: [AngularFireAuthGuard], data : { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path: '**', redirectTo: ''}
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

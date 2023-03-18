@@ -9,17 +9,29 @@
     "frameworksBackend": {
       "region": "europe-west1"
     },
-    "rewrites": [ {
-      "source": "/backend",
-      "run": {
-        "serviceId": "irakli-front",
-        "region": "us-central1"
+    "rewrites": [
+      {
+        "source": "/backend",
+        "run": {
+          "serviceId": "irakli-front",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
-    } ],
-    "redirects": [ {
-      "source": "/backend/:*",
-      "destination": "https://tornikeo.web.app/:backend",
-      "type": 301
-    }]
+    ],
+    "redirects": [
+      {
+        "source": "/backend/:*",
+        "destination": "https://tornikeo.web.app/:backend",
+        "type": 301
+      }
+    ]
   }
 }
