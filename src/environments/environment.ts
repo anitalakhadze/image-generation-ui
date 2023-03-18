@@ -3,6 +3,7 @@ export const environment = {
   actionUrl: 'https://anitalakhadze.github.io/image-generation-ui/login',
   apiAuthUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/auth',
   apiHealthCheckUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/health',
+  presentationUrl: 'https://www.beautiful.ai/player/-NPTG7Q4QvdhjZS7EgrS/FollowFoxAI-Neurohumanities-Lab-Duke-Public',
   firebaseConfig: {
     apiKey: "AIzaSyBNRoRqMBVDJoWRtOikqK76KVP6HH4IROc",
     authDomain: "tornikeo.firebaseapp.com",

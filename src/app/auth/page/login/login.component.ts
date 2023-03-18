@@ -52,17 +52,17 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.loading = false;
         this.router.navigate(['home']);
-        this.authService.getLoggedInUser().currentUser?.getIdToken()
-          .then(
-            (id_token) => {
-              document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
-            }
-          ).catch(
-          (err) => {
-            console.log(err)
-            this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
-          }
-        )
+        // this.authService.getLoggedInUser().currentUser?.getIdToken()
+        //   .then(
+        //     (id_token) => {
+        //       document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+        //     }
+        //   ).catch(
+        //   (err) => {
+        //     console.log(err)
+        //     this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
+        //   }
+        // )
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
@@ -78,17 +78,17 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.loadingGAuth = false;
         this.router.navigate(['home']);
-        this.authService.getLoggedInUser().currentUser?.getIdToken()
-          .then(
-            (id_token) => {
-              document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
-            }
-          ).catch(
-          (err) => {
-            console.log(err)
-            this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
-          }
-        )
+        // this.authService.getLoggedInUser().currentUser?.getIdToken()
+        //   .then(
+        //     (id_token) => {
+        //       document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+        //     }
+        //   ).catch(
+        //   (err) => {
+        //     console.log(err)
+        //     this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
+        //   }
+        // )
       }, err => {
         this.loadingGAuth = false;
         this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');

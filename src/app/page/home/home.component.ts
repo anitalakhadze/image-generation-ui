@@ -13,8 +13,11 @@ import {HttpClient} from "@angular/common/http";
 })
 export class HomeComponent implements OnInit {
   loading = false;
-  iframeUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
+  serviceUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
   iframeLoading = true;
+
+  serviceLoading = true;
+  presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
     public authService: AuthenticationService,
@@ -37,11 +40,31 @@ export class HomeComponent implements OnInit {
     //       this.toastr.error("Error while trying to connect to API", 'ERROR')
     //     }
     //   })
+
+    this.authService.getLoggedInUser().currentUser?.getIdToken()
+      .then(
+        (id_token) => {
+          // document.location.href = `${environment.apiAuthUrl}?id_token=${id_token}`
+          this.serviceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${environment.apiAuthUrl}?id_token=${id_token}`);
+        }
+      ).catch(
+      (err) => {
+        console.log(err)
+        // this.toastr.error("Error while redirecting to FollowFox.ai", 'ERROR')
+      }
+    )
+
+    setTimeout(() => {
+      this.serviceLoading = false;
+      this.closePresentationIframe();
+      // this.serviceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.apiUrl);
+      // this.serviceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://fastapi.tiangolo.com/async/#asynchronous-code');
+    }, 15000)
   }
 
   signOut() {
     this.loading = true;
-    // this.closeIframe();
+    this.closeServiceIframe();
     this.authService.signOut()
       .then(() => {
         this.loading = false;
@@ -53,10 +76,16 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  closeIframe() {
-    const iframe = window.parent.document.getElementById('gradio-iframe');
+  closeServiceIframe() {
+    const serviceIframe = window.parent.document.getElementById('service-iframe');
     // @ts-ignore
-    iframe.parentNode?.removeChild(iframe);
+    serviceIframe.parentNode?.removeChild(serviceIframe);
+  }
+
+  closePresentationIframe() {
+    const presentationIframe = window.parent.document.getElementById('presentation-iframe');
+    // @ts-ignore
+    presentationIframe.parentNode?.removeChild(presentationIframe);
   }
 
 }

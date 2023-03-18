@@ -1,0 +1,25 @@
+{
+  "hosting": {
+    "public": "dist/image-generation-ui",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "europe-west1"
+    },
+    "rewrites": [ {
+      "source": "/backend",
+      "run": {
+        "serviceId": "irakli-front",
+        "region": "us-central1"
+      }
+    } ],
+    "redirects": [ {
+      "source": "/backend/:*",
+      "destination": "https://tornikeo.web.app/:backend",
+      "type": 301
+    }]
+  }
+}

@@ -1,6 +1,8 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="accent" *ngIf="!serviceLoading">
 
   <span class="example-spacer"></span>
+
+  <span style="font-weight: bold; margin-right: 15px">{{authService.getLoggedInUser().currentUser?.email}}</span>
 
   <button mat-raised-button (click)="signOut()" color="primary">
     <span>Sign out</span>
@@ -10,17 +12,29 @@
 
 </mat-toolbar>
 
-<div class="center" style="text-align: center">
-  <h1>Welcome {{authService.getLoggedInUser().currentUser?.email}}!</h1>
-  <h3>You will be redirected to FollowFox.ai</h3>
+<!--<div *ngIf="serviceLoading" class="welcome-text" style="text-align: center">-->
+<!--  <h1>Welcome {{authService.getLoggedInUser().currentUser?.email}}!</h1>-->
+<!--  <h3>You will be redirected to FollowFox.ai</h3>-->
+
+<!--&lt;!&ndash;  <mat-spinner class="primary-spinner center"></mat-spinner>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="service-loading" *ngIf="serviceLoading">
+<!--  <mat-spinner class="primary-spinner center"></mat-spinner>-->
+  <div class="presentation-iframe-div center">
+    <iframe class="presentation-iframe"
+            id="presentation-iframe"
+            [src]="presentationUrl">
+    </iframe>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
 </div>
 
-
-<!--<div class="iframe-container">-->
-<!--  <mat-spinner class="primary-spinner center" *ngIf="iframeLoading"></mat-spinner>-->
-<!--  <iframe class="iframe"-->
-<!--          *ngIf="!iframeLoading"-->
-<!--          id="gradio-iframe"-->
-<!--          [src]="iframeUrl">-->
-<!--  </iframe>-->
-<!--</div>-->
+<div class="service-loaded">
+  <div class="service-iframe-div">
+    <iframe class="service-iframe"
+            id="service-iframe"
+            [src]="serviceUrl">
+    </iframe>
+  </div>
+</div>

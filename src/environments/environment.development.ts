@@ -1,8 +1,9 @@
 export const environment = {
-  apiUrl: 'http://0.0.0.0:8080/ui',
+  apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/ui',
   actionUrl: 'http://localhost:4200/login',
-  apiAuthUrl: 'http://0.0.0.0:8080/auth',
-  apiHealthCheckUrl: 'http://0.0.0.0:8080/health',
+  apiAuthUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/auth',
+  apiHealthCheckUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/health',
+  presentationUrl: 'https://www.beautiful.ai/player/-NPTG7Q4QvdhjZS7EgrS/FollowFoxAI-Neurohumanities-Lab-Duke-Public',
   firebaseConfig: {
     apiKey: "AIzaSyBNRoRqMBVDJoWRtOikqK76KVP6HH4IROc",
     authDomain: "tornikeo.firebaseapp.com",

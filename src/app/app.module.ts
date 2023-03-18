@@ -22,6 +22,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDividerModule} from "@angular/material/divider";
 import {ResetPasswordComponent} from './auth/page/reset-password/reset-password.component';
 import { UserManagementComponent } from './auth/page/user-management/user-management.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserManagementComponent } from './auth/page/user-management/user-manage
         MatToolbarModule,
         MatProgressSpinnerModule,
         MatDividerModule,
+        MatProgressBarModule,
         // ToastrModule added
     ],
   providers: [AuthenticationService],
