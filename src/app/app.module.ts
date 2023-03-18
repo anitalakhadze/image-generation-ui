@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './auth/page/login/login.component';
 import {RegisterComponent} from './auth/page/register/register.component';
 import {HomeComponent} from './page/home/home.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
@@ -23,6 +23,9 @@ import {MatDividerModule} from "@angular/material/divider";
 import {ResetPasswordComponent} from './auth/page/reset-password/reset-password.component';
 import { UserManagementComponent } from './auth/page/user-management/user-management.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @NgModule({
   declarations: [
@@ -33,24 +36,28 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     ResetPasswordComponent,
     UserManagementComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule,
-        ToastrModule.forRoot(),
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-        MatToolbarModule,
-        MatProgressSpinnerModule,
-        MatDividerModule,
-        MatProgressBarModule,
-        // ToastrModule added
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    ToastrModule.forRoot(),
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSliderModule,
+    FormsModule,
+    // ToastrModule added
+  ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 export const environment = {
+  apiBaseUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app',
   apiUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/ui',
   actionUrl: 'http://localhost:4200/login',
   apiAuthUrl: 'https://irakli-front-6uu265amkq-uc.a.run.app/auth',

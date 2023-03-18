@@ -1,8 +1,12 @@
-<mat-toolbar color="accent" *ngIf="!serviceLoading">
+<mat-toolbar color="accent">
+
+  <mat-icon>account_circle</mat-icon>
+
+  <span style="font-weight: bold; margin-left: 10px; cursor: pointer">
+    {{authService.getLoggedInUser().currentUser?.email}}
+  </span>
 
   <span class="example-spacer"></span>
-
-  <span style="font-weight: bold; margin-right: 15px">{{authService.getLoggedInUser().currentUser?.email}}</span>
 
   <button mat-raised-button (click)="signOut()" color="primary">
     <span>Sign out</span>
@@ -19,22 +23,94 @@
 <!--&lt;!&ndash;  <mat-spinner class="primary-spinner center"></mat-spinner>&ndash;&gt;-->
 <!--</div>-->
 
-<div class="service-loading" *ngIf="serviceLoading">
-<!--  <mat-spinner class="primary-spinner center"></mat-spinner>-->
-  <div class="presentation-iframe-div center">
-    <iframe class="presentation-iframe"
-            id="presentation-iframe"
-            [src]="presentationUrl">
-    </iframe>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
-</div>
+<div class="main-container">
+  <div class="left-container">
+    <div class="form-container">
+      <form [formGroup]="imageGenerationForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a model</mat-label>
+          <mat-select formControlName="model" [(value)]="selectedModel">
+            <mat-option *ngFor="let model of models" [value]="model">
+              {{model}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-<div class="service-loaded">
-  <div class="service-iframe-div">
-    <iframe class="service-iframe"
-            id="service-iframe"
-            [src]="serviceUrl">
-    </iframe>
+        <mat-form-field appearance="fill">
+          <mat-label>Prompt</mat-label>
+          <textarea formControlName="prompt"
+                    matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Image height</mat-label>
+          <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
+            <input matInput matSliderThumb formControlName="height">
+          </mat-slider>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Image width</mat-label>
+          <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
+            <input matInput matSliderThumb formControlName="width">
+          </mat-slider>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Sampling steps</mat-label>
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete>
+            <input matInput matSliderThumb formControlName="num_inference_steps">
+          </mat-slider>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Guidance scale</mat-label>
+          <mat-slider min="1" max="50" step="0.1" showTickMarks discrete>
+            <input matInput matSliderThumb formControlName="num_inference_steps">
+          </mat-slider>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Negative prompt</mat-label>
+          <textarea formControlName="negative_prompt"
+                    matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5">
+          </textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Seed</mat-label>
+          <input matInput formControlName="generator" type="number" min="0" max="1000">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Sampling method</mat-label>
+          <mat-select formControlName="scheduler" [(value)]="selectedSamplingMethod">
+            <mat-option *ngFor="let method of samplingMethods" [value]="method">
+              {{method}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="right-container">
+    <div class="form-container">
+      <button mat-raised-button class="run-btn" color="primary"
+              [disabled]="apiLoading"
+              (click)="generate()">
+        <span *ngIf="!apiLoading">Run</span>
+        <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+      </button>
+
+    </div>
   </div>
 </div>
