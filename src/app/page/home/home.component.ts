@@ -46,12 +46,10 @@ export class HomeComponent implements OnInit {
   selectedSamplingMethod = this.samplingMethods[0];
   id_token = '';
 
-images!: Response;
+  images!: Response;
   apiLoading = false;
 
   loading = false;
-  serviceUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
-
   presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
@@ -110,12 +108,12 @@ images!: Response;
   //   // @ts-ignore
   //   serviceIframe.parentNode?.removeChild(serviceIframe);
   // }
-  //
-  // closePresentationIframe() {
-  //   const presentationIframe = window.parent.document.getElementById('presentation-iframe');
-  //   // @ts-ignore
-  //   presentationIframe.parentNode?.removeChild(presentationIframe);
-  // }
+
+  closePresentationIframe() {
+    const presentationIframe = window.parent.document.getElementById('presentation-iframe');
+    // @ts-ignore
+    presentationIframe.parentNode?.removeChild(presentationIframe);
+  }
 
   generate() {
     this.apiLoading = true;

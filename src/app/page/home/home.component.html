@@ -16,13 +16,6 @@
 
 </mat-toolbar>
 
-<!--<div *ngIf="serviceLoading" class="welcome-text" style="text-align: center">-->
-<!--  <h1>Welcome {{authService.getLoggedInUser().currentUser?.email}}!</h1>-->
-<!--  <h3>You will be redirected to FollowFox.ai</h3>-->
-
-<!--&lt;!&ndash;  <mat-spinner class="primary-spinner center"></mat-spinner>&ndash;&gt;-->
-<!--</div>-->
-
 <div class="main-container">
   <div class="left-container">
     <div class="form-container">
@@ -114,7 +107,17 @@
   </div>
 
   <div class="right-container">
-    <div class="images-container" *ngIf="this.images">
+
+    <div class="service-loading" *ngIf="apiLoading">
+      <div class="iframe-div center">
+        <iframe class="presentation-iframe"
+                id="presentation-iframe"
+                [src]="presentationUrl">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="images-container" *ngIf="this.images && !apiLoading">
       <mat-grid-list cols="2" rowHeight="2:2">
         <mat-grid-tile *ngFor="let image of this.images.images">
           <input type="image"
