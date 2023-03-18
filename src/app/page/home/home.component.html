@@ -46,19 +46,24 @@
           </textarea>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Image height</mat-label>
-          <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
-            <input matInput matSliderThumb formControlName="height">
-          </mat-slider>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Image width</mat-label>
-          <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
-            <input matInput matSliderThumb formControlName="width">
-          </mat-slider>
-        </mat-form-field>
+        <div>
+          <div style="float: left; width: 45%">
+            <mat-form-field appearance="fill">
+              <mat-label>Image height</mat-label>
+              <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
+                <input matInput matSliderThumb formControlName="height">
+              </mat-slider>
+            </mat-form-field>
+          </div>
+          <div style="float: right; width: 45%">
+            <mat-form-field appearance="fill">
+              <mat-label>Image width</mat-label>
+              <mat-slider min="256" max="1024" step="1" showTickMarks discrete>
+                <input matInput matSliderThumb formControlName="width">
+              </mat-slider>
+            </mat-form-field>
+          </div>
+        </div>
 
         <mat-form-field appearance="fill">
           <mat-label>Sampling steps</mat-label>
@@ -98,19 +103,37 @@
           </mat-select>
         </mat-form-field>
 
+        <button mat-raised-button class="run-btn" color="primary"
+                [disabled]="apiLoading"
+                (click)="generate()">
+          <span *ngIf="!apiLoading">Run</span>
+          <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+        </button>
       </form>
     </div>
   </div>
 
   <div class="right-container">
-    <div class="form-container">
-      <button mat-raised-button class="run-btn" color="primary"
-              [disabled]="apiLoading"
-              (click)="generate()">
-        <span *ngIf="!apiLoading">Run</span>
-        <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
-      </button>
-
+    <div class="images-container">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <div *ngFor="let image of images">
+          <!--        <p>{{image.image_base64}}</p>-->
+          <mat-grid-tile style="width: 300px; height: 275px">
+            <input type="image"
+                   [height]="275"
+                   [width]="300"
+                   [src]="'data:image/jpg;base64,' + image.image_base64">
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
     </div>
+
+<!--      <div *ngFor="let image of images">-->
+<!--&lt;!&ndash;        <p>{{image.image_base64}}</p>&ndash;&gt;-->
+<!--        <input type="image"-->
+<!--               [height]="275"-->
+<!--               [width]="300"-->
+<!--               [src]="'data:image/jpg;base64,' + image.image_base64">-->
+<!--      </div>-->
   </div>
 </div>

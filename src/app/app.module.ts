@@ -26,6 +26,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatSelectModule,
     MatSliderModule,
     FormsModule,
+    MatGridListModule,
     // ToastrModule added
   ],
   providers: [AuthenticationService],
