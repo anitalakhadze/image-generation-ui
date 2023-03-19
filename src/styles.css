@@ -33,3 +33,25 @@ body {
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #ffffff !important;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5c6bc0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f4a20b;
+}

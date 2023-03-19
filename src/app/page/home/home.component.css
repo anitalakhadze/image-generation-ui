@@ -101,3 +101,10 @@ mat-slider {
   width: 80%;
   height: 100%;
 }
+
+.slider-div {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 3px 20px 3px 3px;
+  margin-bottom: 20px;
+}

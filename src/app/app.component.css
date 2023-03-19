@@ -1,4 +1,5 @@
 .shell-container {
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
+  /*background-color: white;*/
 }
