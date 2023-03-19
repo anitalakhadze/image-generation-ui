@@ -108,3 +108,7 @@ mat-slider {
   padding: 3px 20px 3px 3px;
   margin-bottom: 20px;
 }
+
+mat-grid-tile {
+  border-radius: 5px !important;
+}

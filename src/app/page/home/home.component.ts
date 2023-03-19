@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   id_token = '';
 
   images!: Response;
+
   apiLoading = false;
   loadPresentation = false;
 
