@@ -40,28 +40,28 @@
         </mat-form-field>
 
         <div class="slider-div">
-          <mat-label>Image height: {{this.imageGenerationForm.controls['height'].value}}</mat-label>
+          <mat-label style="margin-left: 10px">Image height: {{this.imageGenerationForm.controls['height'].value}}</mat-label>
           <mat-slider [max]="1024" [min]="256" [step]="1" discrete>
             <input matSliderThumb formControlName="height">
           </mat-slider>
         </div>
 
         <div class="slider-div">
-          <mat-label>Image width: {{this.imageGenerationForm.controls['width'].value}}</mat-label>
+          <mat-label style="margin-left: 10px">Image width: {{this.imageGenerationForm.controls['width'].value}}</mat-label>
           <mat-slider [max]="1024" [min]="256" [step]="1" discrete>
             <input matSliderThumb formControlName="height">
           </mat-slider>
         </div>
 
         <div class="slider-div">
-          <mat-label>Sampling steps: {{this.imageGenerationForm.controls['num_inference_steps'].value}}</mat-label>
+          <mat-label style="margin-left: 10px">Sampling steps: {{this.imageGenerationForm.controls['num_inference_steps'].value}}</mat-label>
           <mat-slider [max]="100" [min]="0" [step]="1" discrete>
             <input matSliderThumb formControlName="num_inference_steps">
           </mat-slider>
         </div>
 
         <div class="slider-div">
-          <mat-label>Guidance scale: {{this.imageGenerationForm.controls['guidance_scale'].value}}</mat-label>
+          <mat-label style="margin-left: 10px">Guidance scale: {{this.imageGenerationForm.controls['guidance_scale'].value}}</mat-label>
           <mat-slider [max]="50" [min]="1" [step]="0.1" discrete>
             <input matSliderThumb formControlName="guidance_scale">
           </mat-slider>
