@@ -22,7 +22,6 @@ export interface Response {
 })
 export class HomeComponent implements OnInit {
   imageGenerationForm!: FormGroup;
-
   models: string[] = [];
   samplingMethods: string[] = [
     "DEISMultistepScheduler",
@@ -44,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   images!: Response;
   apiLoading = false;
+  loadPresentation = false;
 
   loading = false;
   presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
@@ -56,6 +56,24 @@ export class HomeComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private httpClient: HttpClient
   ) {
+    this.getLoggedInUserToken();
+  }
+
+  getLoggedInUserToken() {
+    this.authService.getLoggedInUser().currentUser?.getIdToken()
+      .then(
+        (id_token) => {
+          this.id_token = id_token;
+        }
+      ).catch(
+      (err) => {
+        console.log(err)
+      }
+    );
+  }
+
+  initModels() {
+    return this.httpClient.get<[]>(environment.apiBaseUrl + '/models');
   }
 
   ngOnInit(): void {
@@ -73,29 +91,19 @@ export class HomeComponent implements OnInit {
       scheduler: [this.samplingMethods[0], Validators.required]
     });
 
-    this.httpClient.get<[]>(environment.apiBaseUrl + '/models')
+    this.initModels()
       .subscribe((data) => {
           this.apiLoading = false;
           this.models = data;
           this.imageGenerationForm.controls['model'].setValue(this.models[0]);
+          this.generate(true);
         }
       )
-
-    this.authService.getLoggedInUser().currentUser?.getIdToken()
-      .then(
-        (id_token) => {
-          this.id_token = id_token;
-        }
-      ).catch(
-      (err) => {
-        console.log(err)
-      }
-    )
   }
 
   signOut() {
     this.loading = true;
-    // this.closeServiceIframe();
+    // this.removePresentationIframe();
     this.authService.signOut()
       .then(() => {
         this.loading = false;
@@ -107,26 +115,22 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  // closeServiceIframe() {
-  //   const serviceIframe = window.parent.document.getElementById('service-iframe');
-  //   // @ts-ignore
-  //   serviceIframe.parentNode?.removeChild(serviceIframe);
-  // }
-
-  closePresentationIframe() {
+  removePresentationIframe() {
     const presentationIframe = window.parent.document.getElementById('presentation-iframe');
     // @ts-ignore
     presentationIframe.parentNode?.removeChild(presentationIframe);
   }
 
-  generate() {
+  generate(loadPresentation: boolean = false) {
     this.apiLoading = true;
+    this.loadPresentation = loadPresentation;
     this.imageGenerationForm.controls['id_token'].setValue(this.id_token);
     console.log(this.imageGenerationForm.value);
 
     this.httpClient.post<Response>(environment.apiBaseUrl + '/predict', this.imageGenerationForm.value)
       .subscribe((data) => {
             this.apiLoading = false;
+            this.loadPresentation = false;
             this.images = data;
           }
       )

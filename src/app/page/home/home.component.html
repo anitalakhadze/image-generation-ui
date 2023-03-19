@@ -9,7 +9,7 @@
   <span class="example-spacer"></span>
 
   <button mat-raised-button (click)="signOut()" color="primary">
-    <span>Sign out</span>
+    <span *ngIf="!loading">Sign out</span>
     <mat-icon>logout</mat-icon>
     <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
   </button>
@@ -103,7 +103,7 @@
 
   <div class="right-container">
 
-    <div class="service-loading" *ngIf="apiLoading">
+    <div class="service-loading" *ngIf="loadPresentation">
       <div class="iframe-div center">
         <iframe class="presentation-iframe"
                 id="presentation-iframe"
