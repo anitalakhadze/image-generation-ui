@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
   apiLoading = false;
   loadPresentation = false;
 
-  loading = false;
+  signOutBtnLoading = false;
   presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
@@ -102,14 +102,14 @@ export class HomeComponent implements OnInit {
   }
 
   signOut() {
-    this.loading = true;
+    this.signOutBtnLoading = true;
     // this.removePresentationIframe();
     this.authService.signOut()
       .then(() => {
-        this.loading = false;
+        this.signOutBtnLoading = false;
         this.router.navigate(['login']);
       }, err => {
-        this.loading = false;
+        this.signOutBtnLoading = false;
         console.log(err);
         this.toastr.error(err.message, 'ERROR');
       });

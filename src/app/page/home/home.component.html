@@ -8,10 +8,14 @@
 
   <span class="example-spacer"></span>
 
+  <span style="font-weight: bold; margin-right: 10px; cursor: pointer" (click)="loadPresentation = true">
+    About us
+  </span>
+
   <button mat-raised-button (click)="signOut()" color="primary">
-    <span *ngIf="!loading">Sign out</span>
+    <span *ngIf="!signOutBtnLoading">Sign out</span>
     <mat-icon>logout</mat-icon>
-    <mat-spinner *ngIf="loading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+    <mat-spinner *ngIf="signOutBtnLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
   </button>
 
 </mat-toolbar>
@@ -105,6 +109,7 @@
 
     <div class="service-loading" *ngIf="loadPresentation">
       <div class="iframe-div center">
+        <button mat-button style="float: right" (click)="loadPresentation = false">X</button>
         <iframe class="presentation-iframe"
                 id="presentation-iframe"
                 [src]="presentationUrl">
