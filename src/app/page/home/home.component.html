@@ -130,7 +130,7 @@
       </mat-grid-list>
     </div>
 
-    <div class="images-container" *ngIf="!this.images">
+    <div class="images-container" *ngIf="!this.images || apiLoading">
       <mat-grid-list cols="2" rowHeight="2:2">
         <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]">
           <input type="image"
