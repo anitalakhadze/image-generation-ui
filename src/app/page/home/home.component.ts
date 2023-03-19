@@ -23,11 +23,7 @@ export interface Response {
 export class HomeComponent implements OnInit {
   imageGenerationForm!: FormGroup;
 
-  models: string[] = [
-    "irakli-last-damon_2-ep99-gs00700",
-    "irakli-last-damon_3-ep99-gs00700",
-    "irakli-last-damon_5-ep99-gs00500"
-  ];
+  models: string[] = [];
   samplingMethods: string[] = [
     "DEISMultistepScheduler",
     "DDIMScheduler",
@@ -76,6 +72,14 @@ export class HomeComponent implements OnInit {
       generator: [555, Validators.required],
       scheduler: [this.samplingMethods[0], Validators.required]
     });
+
+    this.httpClient.get<[]>(environment.apiBaseUrl + '/models')
+      .subscribe((data) => {
+          this.apiLoading = false;
+          this.models = data;
+          this.imageGenerationForm.controls['model'].setValue(this.models[0]);
+        }
+      )
 
     this.authService.getLoggedInUser().currentUser?.getIdToken()
       .then(
