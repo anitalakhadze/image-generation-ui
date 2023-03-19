@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     "irakli-last-damon_5-ep99-gs00500"
   ];
   samplingMethods: string[] = [
+    "DEISMultistepScheduler",
     "DDIMScheduler",
     "DDPMScheduler",
     "HeunDiscreteScheduler",
@@ -37,7 +38,6 @@ export class HomeComponent implements OnInit {
     "EulerDiscreteScheduler",
     "KDPM2DiscreteScheduler",
     "DPMSolverMultistepScheduler",
-    "DEISMultistepScheduler",
     "PNDMScheduler",
     "EulerAncestralDiscreteScheduler"
   ];
