@@ -38,6 +38,7 @@
 .iframe-div {
   height: 395px;
   width: 700px;
+  top: 47%;
 }
 
 .presentation-iframe {
@@ -96,10 +97,13 @@ mat-slider {
 }
 
 .images-container {
-  float: right;
+  /*float: right;*/
   padding: 30px;
   width: 80%;
-  height: 100%;
+  /*height: 100%;*/
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .slider-div {
@@ -109,6 +113,27 @@ mat-slider {
   margin-bottom: 20px;
 }
 
-mat-grid-tile {
-  border-radius: 5px !important;
+.wrapper-div {
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .iframe-div {
+    height: 200px;
+    width: 355px;
+    top: 44%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .left-container {
+    width: 100%;
+  }
+
+  .right-container {
+    width: 100%;
+    height: fit-content;
+  }
 }

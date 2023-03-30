@@ -55,3 +55,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #f4a20b;
 }
+
+@media screen and (max-width: 600px) {
+  .main-form-container {
+    width: 345px;
+  }
+}
