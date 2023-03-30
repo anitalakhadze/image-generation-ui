@@ -27,6 +27,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { Img2imgComponent } from './page/img2img/img2img.component';
+import { LayoutComponent } from './layout/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     HomeComponent,
     ResetPasswordComponent,
     UserManagementComponent,
+    Img2imgComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import {map, pipe} from "rxjs";
 import {isNotAnonymous} from "@angular/fire/auth-guard";
 import {ResetPasswordComponent} from "./auth/page/reset-password/reset-password.component";
 import {UserManagementComponent} from "./auth/page/user-management/user-management.component";
+import {LayoutComponent} from "./layout/layout/layout.component";
+import {Img2imgComponent} from "./page/img2img/img2img.component";
 
 export const redirectAnonymousTo = (redirect: any[]) =>
   pipe(isNotAnonymous, map(loggedIn => loggedIn || redirect));
@@ -19,7 +21,23 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'password/reset', component: ResetPasswordComponent},
   {path: 'user/management', component: UserManagementComponent},
-  {path: 'home', component: HomeComponent, canActivate: [AngularFireAuthGuard], data : { authGuardPipe: redirectUnauthorizedToLogin }},
+  {
+    path: 'home',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'stable-diffusion',
+        component: HomeComponent
+      },
+      {
+        path: 'control-net',
+        component: Img2imgComponent
+      }
+    ],
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  // {path: 'home', component: HomeComponent, canActivate: [AngularFireAuthGuard], data : { authGuardPipe: redirectUnauthorizedToLogin }},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', redirectTo: 'home'}
 ];

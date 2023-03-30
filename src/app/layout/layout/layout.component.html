@@ -1,0 +1,48 @@
+<div>
+  <mat-toolbar color="accent">
+
+    <mat-icon>account_circle</mat-icon>
+
+    <span style="font-weight: bold; margin-left: 10px; cursor: pointer">
+    {{authService.getLoggedInUser().currentUser?.email}}
+  </span>
+
+    <span class="example-spacer"></span>
+
+    <span style="font-weight: bold; margin-right: 10px; cursor: pointer" (click)="loadPresentation = true">
+    About us
+  </span>
+
+    <button mat-raised-button style="margin-right: 5px; background-color: #f4d50b; color: black"
+            (click)="router.navigate(['home/stable-diffusion'])">
+      <span>Stable Diffusion</span>
+      <mat-icon>dashboard</mat-icon>
+    </button>
+
+    <button mat-raised-button style="margin-right: 5px; background-color: #f4a20b; color: black"
+            (click)="router.navigate(['home/control-net'])">
+      <span>ControlNet</span>
+      <mat-icon>recent_actors</mat-icon>
+    </button>
+
+    <button mat-raised-button (click)="signOut()" color="primary">
+      <span *ngIf="!signOutBtnLoading">Sign out</span>
+      <mat-icon>logout</mat-icon>
+      <mat-spinner *ngIf="signOutBtnLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+    </button>
+
+  </mat-toolbar>
+
+  <div class="service-loading" *ngIf="loadPresentation">
+    <div class="iframe-div center">
+      <button mat-button style="float: right" (click)="loadPresentation = false">X</button>
+      <iframe class="presentation-iframe"
+              id="presentation-iframe"
+              [src]="presentationUrl">
+      </iframe>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       )
       .then(() => {
         this.loading = false;
-        this.router.navigate(['home']);
+        this.router.navigate(['home/stable-diffusion']);
       }, err => {
         this.loading = false;
         this.toastr.error(this.authService.getSignInErrorMessage(err), 'ERROR');
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.authService.doGoogleLogin()
       .then(() => {
         this.loadingGAuth = false;
-        this.router.navigate(['home']);
+        this.router.navigate(['home/stable-diffusion']);
       }, err => {
         this.loadingGAuth = false;
         this.toastr.error(this.authService.getGAuthErrorMessage(err), 'ERROR');
