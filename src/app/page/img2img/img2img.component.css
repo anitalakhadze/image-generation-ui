@@ -1,0 +1,90 @@
+.main-container {
+  width: 100%;
+  height: 100%;
+}
+
+.left-container {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.right-container {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.form-container {
+  padding: 30px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #5c6bc0 !important;
+}
+
+.welcome-text {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -30%);
+  transform: translate(-50%, -30%);
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+.run-btn {
+  width: 100%;
+  font-weight: bold;
+  font-size: medium;
+  height: 45px;
+}
+
+.images-container {
+  /*float: right;*/
+  padding: 30px;
+  width: 80%;
+  /*height: 100%;*/
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.slider-div {
+  /*border: 1px solid gray;*/
+  /*border-radius: 5px;*/
+  padding: 3px 20px 3px 3px;
+  margin-bottom: 20px;
+}
+
+.wrapper-div {
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .iframe-div {
+    height: 200px;
+    width: 355px;
+    top: 44%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .left-container {
+    width: 100%;
+  }
+
+  .right-container {
+    width: 100%;
+    height: fit-content;
+  }
+}

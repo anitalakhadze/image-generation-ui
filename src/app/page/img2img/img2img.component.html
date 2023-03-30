@@ -1,0 +1,40 @@
+<div class="main-container">
+  <div class="left-container">
+    <div class="form-container">
+      <form [formGroup]="imageGenerationForm">
+
+        <mat-form-field appearance="outline">
+          <ngx-mat-file-input formControlName="image_data"
+                              [multiple]="false"
+                              [accept]="'.png, .jpg, .jpeg'"
+                              [color]="'primary'">
+            <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+          </ngx-mat-file-input>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prompt</mat-label>
+          <textarea formControlName="prompt"
+                    matInput
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5">
+          </textarea>
+        </mat-form-field>
+
+        <button mat-raised-button class="run-btn" color="primary"
+                [disabled]="apiLoading"
+                (click)="generate()">
+          <span *ngIf="!apiLoading">Run</span>
+          <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="right-container">
+
+
+  </div>
+</div>

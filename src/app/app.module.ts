@@ -29,6 +29,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { Img2imgComponent } from './page/img2img/img2img.component';
 import { LayoutComponent } from './layout/layout/layout.component';
+import {NgxMatFileInputModule} from "@angular-material-components/file-input";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { LayoutComponent } from './layout/layout/layout.component';
     MatSliderModule,
     FormsModule,
     MatGridListModule,
+    NgxMatFileInputModule,
     // ToastrModule added
   ],
   providers: [AuthenticationService],
