@@ -1,25 +1,3 @@
-<mat-toolbar color="accent">
-
-  <mat-icon>account_circle</mat-icon>
-
-  <span style="font-weight: bold; margin-left: 10px; cursor: pointer">
-    {{authService.getLoggedInUser().currentUser?.email}}
-  </span>
-
-  <span class="example-spacer"></span>
-
-  <span style="font-weight: bold; margin-right: 10px; cursor: pointer" (click)="loadPresentation = true">
-    About us
-  </span>
-
-  <button mat-raised-button (click)="signOut()" color="primary">
-    <span *ngIf="!signOutBtnLoading">Sign out</span>
-    <mat-icon>logout</mat-icon>
-    <mat-spinner *ngIf="signOutBtnLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
-  </button>
-
-</mat-toolbar>
-
 <div class="main-container">
   <div class="left-container">
     <div class="form-container">
@@ -130,18 +108,6 @@
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-
-<!--    <div class="images-container" *ngIf="!this.images || apiLoading">-->
-<!--      <mat-grid-list cols="2" rowHeight="2:2">-->
-<!--        <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]">-->
-<!--          <input type="image"-->
-<!--                 [height]="275"-->
-<!--                 [width]="300"-->
-<!--                 [src]="'../../assets/empty_pic.png'"-->
-<!--                 alt="image">-->
-<!--        </mat-grid-tile>-->
-<!--      </mat-grid-list>-->
-<!--    </div>-->
 
     <div class="images-container" *ngIf="!this.images || apiLoading">
       <mat-grid-list cols="2" rowHeight="2:2">

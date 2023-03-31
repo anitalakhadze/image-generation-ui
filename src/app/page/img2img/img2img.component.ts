@@ -1,12 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../auth/service/authentication.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {Response} from "../home/home.component";
 
 @Component({
   selector: 'app-img2img',
@@ -14,6 +12,8 @@ import {Response} from "../home/home.component";
   styleUrls: ['./img2img.component.css']
 })
 export class Img2imgComponent implements OnInit {
+
+  imageSrc: string | undefined;
 
   imageGenerationForm!: FormGroup;
   id_token = '';
@@ -53,6 +53,15 @@ export class Img2imgComponent implements OnInit {
       prompt: ['hot air balloon', Validators.required],
       image_data: [null, Validators.required]
     });
+
+    this.imageGenerationForm.controls['image_data'].valueChanges.subscribe((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        console.log(this.imageSrc)
+      }
+    })
   }
 
   generate(loadPresentation: boolean = false) {
@@ -73,4 +82,18 @@ export class Img2imgComponent implements OnInit {
     //   )
   }
 
+  getImage($event: Event) {
+    // @ts-ignore
+    if ($event.target.files && $event.target.files[0]) {
+      // @ts-ignore
+      let file = $event.target.files[0];
+
+      console.log(file);
+    }
+  }
+
+  removeImage() {
+    this.imageSrc = undefined;
+    this.imageGenerationForm.controls['image_data'].setValue(null);
+  }
 }

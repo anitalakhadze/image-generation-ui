@@ -1,6 +1,18 @@
 <div class="main-container">
   <div class="left-container">
     <div class="form-container">
+
+      <div class="image-data-div">
+        <img class="image"
+             [src]="imageSrc == undefined ? '../../assets/empty_pic.png' : imageSrc"
+             alt="image">
+        <button mat-mini-fab (click)="removeImage()"
+                [disabled]="imageSrc == undefined"
+                class="remove-btn">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+
       <form [formGroup]="imageGenerationForm">
 
         <mat-form-field appearance="outline">

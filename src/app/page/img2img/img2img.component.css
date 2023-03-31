@@ -88,3 +88,29 @@ mat-slider {
     height: fit-content;
   }
 }
+
+.image-data-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.image {
+  max-width: 50%;
+  height: auto;
+  object-fit: contain;
+}
+
+.remove-btn {
+  left: 10px;
+  background-color: rgba(241, 241, 241, 0.94);
+  color: black;
+  box-shadow: none;
+}
+
+.remove-btn:hover {
+  background-color: #f4a20b;
+}

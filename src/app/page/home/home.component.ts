@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
   apiLoading = false;
   loadPresentation = false;
 
-  signOutBtnLoading = false;
   presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
@@ -97,29 +96,10 @@ export class HomeComponent implements OnInit {
           this.apiLoading = false;
           this.models = data;
           this.imageGenerationForm.controls['model'].setValue(this.models[0]);
-          this.generate(true);
+          // TODO: uncomment
+          // this.generate(true);
         }
       )
-  }
-
-  signOut() {
-    this.signOutBtnLoading = true;
-    // this.removePresentationIframe();
-    this.authService.signOut()
-      .then(() => {
-        this.signOutBtnLoading = false;
-        this.router.navigate(['login']);
-      }, err => {
-        this.signOutBtnLoading = false;
-        console.log(err);
-        this.toastr.error(err.message, 'ERROR');
-      });
-  }
-
-  removePresentationIframe() {
-    const presentationIframe = window.parent.document.getElementById('presentation-iframe');
-    // @ts-ignore
-    presentationIframe.parentNode?.removeChild(presentationIframe);
   }
 
   generate(loadPresentation: boolean = false) {
