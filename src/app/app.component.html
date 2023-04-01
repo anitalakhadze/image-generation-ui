@@ -1,3 +1,15 @@
 <div class="shell-container">
   <router-outlet></router-outlet>
+
+  <div class="service-loading" *ngIf="this.loadPresentation">
+    <div class="iframe-div center">
+      <button mat-button style="float: right" (click)="this.loadPresentation = false">X</button>
+      <iframe class="presentation-iframe"
+              id="presentation-iframe"
+              [src]="presentationUrl">
+      </iframe>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+
 </div>

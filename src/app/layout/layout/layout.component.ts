@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthenticationService} from "../../auth/service/authentication.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-import {environment} from "../../../environments/environment";
+import {PresentationService} from "../../service/presentation/presentation.service";
 
 @Component({
   selector: 'app-layout',
@@ -12,22 +11,18 @@ import {environment} from "../../../environments/environment";
 })
 export class LayoutComponent {
 
-  loadPresentation: boolean = false;
   signOutBtnLoading: boolean = false;
-
-  presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
     public authService: AuthenticationService,
     public router: Router,
     private toastr: ToastrService,
-    private sanitizer: DomSanitizer
+    public presentationService: PresentationService
   ) {
   }
 
   signOut() {
     this.signOutBtnLoading = true;
-    // this.removePresentationIframe();
     this.authService.signOut()
       .then(() => {
         this.signOutBtnLoading = false;
@@ -37,12 +32,6 @@ export class LayoutComponent {
         console.log(err);
         this.toastr.error(err.message, 'ERROR');
       });
-  }
-
-  removePresentationIframe() {
-    const presentationIframe = window.parent.document.getElementById('presentation-iframe');
-    // @ts-ignore
-    presentationIframe.parentNode?.removeChild(presentationIframe);
   }
 
 }

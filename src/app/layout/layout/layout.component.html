@@ -9,7 +9,7 @@
 
     <span class="example-spacer"></span>
 
-    <span style="font-weight: bold; margin-right: 10px; cursor: pointer" (click)="loadPresentation = true">
+    <span style="font-weight: bold; margin-right: 10px; cursor: pointer" (click)="presentationService.showPresentation()">
     About us
   </span>
 
@@ -32,17 +32,6 @@
     </button>
 
   </mat-toolbar>
-
-  <div class="service-loading" *ngIf="loadPresentation">
-    <div class="iframe-div center">
-      <button mat-button style="float: right" (click)="loadPresentation = false">X</button>
-      <iframe class="presentation-iframe"
-              id="presentation-iframe"
-              [src]="presentationUrl">
-      </iframe>
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </div>
-  </div>
 
   <router-outlet></router-outlet>
 </div>

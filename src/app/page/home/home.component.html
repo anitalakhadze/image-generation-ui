@@ -75,7 +75,7 @@
         </mat-form-field>
 
         <button mat-raised-button class="run-btn" color="primary"
-                [disabled]="apiLoading"
+                [disabled]="apiLoading || imageGenerationForm.invalid"
                 (click)="generate()">
           <span *ngIf="!apiLoading">Run</span>
           <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
@@ -85,17 +85,6 @@
   </div>
 
   <div class="right-container">
-
-    <div class="service-loading" *ngIf="loadPresentation">
-      <div class="iframe-div center">
-        <button mat-button style="float: right" (click)="loadPresentation = false">X</button>
-        <iframe class="presentation-iframe"
-                id="presentation-iframe"
-                [src]="presentationUrl">
-        </iframe>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </div>
-    </div>
 
     <div class="images-container" *ngIf="this.images && !apiLoading">
       <mat-grid-list cols="2" rowHeight="2.5:2">

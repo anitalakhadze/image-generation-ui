@@ -66,7 +66,7 @@ import {NgxMatFileInputModule} from "@angular-material-components/file-input";
     NgxMatFileInputModule,
     // ToastrModule added
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AppComponent],
   bootstrap: [AppComponent]
 })
 

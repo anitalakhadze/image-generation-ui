@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../auth/service/authentication.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PresentationService} from "../../service/presentation/presentation.service";
 
 export interface Image {
   image_base64: string
@@ -44,17 +44,14 @@ export class HomeComponent implements OnInit {
   images!: Response;
 
   apiLoading = false;
-  loadPresentation = false;
-
-  presentationUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(environment.presentationUrl);
 
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthenticationService,
     private router: Router,
     private toastr: ToastrService,
-    private sanitizer: DomSanitizer,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private presentationService: PresentationService
   ) {
     this.getLoggedInUserToken();
   }
@@ -96,24 +93,33 @@ export class HomeComponent implements OnInit {
           this.apiLoading = false;
           this.models = data;
           this.imageGenerationForm.controls['model'].setValue(this.models[0]);
-          // TODO: uncomment
-          // this.generate(true);
+          this.generate(true);
         }
       )
   }
 
   generate(loadPresentation: boolean = false) {
     this.apiLoading = true;
-    this.loadPresentation = loadPresentation;
+    if (loadPresentation) {
+      this.presentationService.showPresentation();
+    } else {
+      this.presentationService.closePresentation();
+    }
     this.imageGenerationForm.controls['id_token'].setValue(this.id_token);
     console.log(this.imageGenerationForm.value);
 
     this.httpClient.post<Response>(environment.apiBaseUrl + '/predict', this.imageGenerationForm.value)
-      .subscribe((data) => {
-            this.apiLoading = false;
-            this.loadPresentation = false;
-            this.images = data;
-          }
-      )
+      .subscribe({
+        next: (data) => {
+          this.apiLoading = false;
+          this.presentationService.closePresentation();
+          this.images = data;
+        },
+        error: (err) => {
+          this.apiLoading = false;
+          this.presentationService.closePresentation();
+          this.toastr.error(err, 'ERROR');
+        }
+      })
   }
 }

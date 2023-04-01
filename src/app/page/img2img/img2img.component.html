@@ -17,6 +17,8 @@
 
         <mat-form-field appearance="outline">
           <ngx-mat-file-input formControlName="image_data"
+                              (input)="preview($event)"
+                              placeholder="{{fileName}}"
                               [multiple]="false"
                               [accept]="'.png, .jpg, .jpeg'"
                               [color]="'primary'">
@@ -35,8 +37,8 @@
         </mat-form-field>
 
         <button mat-raised-button class="run-btn" color="primary"
-                [disabled]="apiLoading"
-                (click)="generate()">
+                [disabled]="apiLoading || imageGenerationForm.invalid"
+                (click)="generate(true)">
           <span *ngIf="!apiLoading">Run</span>
           <mat-spinner *ngIf="apiLoading" mode="indeterminate" style="margin:0 auto;" [diameter]="30"></mat-spinner>
         </button>
@@ -46,25 +48,23 @@
   </div>
 
   <div class="right-container">
-<!--    <div class="service-loading" *ngIf="loadPresentation">-->
-<!--      <div class="iframe-div center">-->
-<!--        <button mat-button style="float: right" (click)="loadPresentation = false">X</button>-->
-<!--        <iframe class="presentation-iframe"-->
-<!--                id="presentation-iframe"-->
-<!--                [src]="presentationUrl">-->
-<!--        </iframe>-->
-<!--        <mat-progress-bar mode="indeterminate"></mat-progress-bar>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="images-container" *ngIf="this.images && !apiLoading">
       <mat-grid-list cols="2" rowHeight="2.5:2">
-        <mat-grid-tile *ngFor="let image of this.images.images">
+        <mat-grid-tile>
           <input type="image"
                  style="width: 80% !important;"
                  [height]="275"
                  [width]="300"
-                 [src]="base64ImagePrefix + image.image_base64"
+                 [src]="base64ImagePrefix + images.canny_base64"
+                 alt="generated-image">
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <input type="image"
+                 style="width: 80% !important;"
+                 [height]="275"
+                 [width]="300"
+                 [src]="base64ImagePrefix + images.image_base64"
                  alt="generated-image">
         </mat-grid-tile>
       </mat-grid-list>
@@ -72,7 +72,7 @@
 
     <div class="images-container" *ngIf="!this.images || apiLoading">
       <mat-grid-list cols="2" rowHeight="2.5:2">
-        <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+        <mat-grid-tile *ngFor="let i of [1, 2]">
           <input type="image"
                  style="width: 80% !important;"
                  [height]="275"
