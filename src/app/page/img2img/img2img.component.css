@@ -114,3 +114,7 @@ mat-slider {
 .remove-btn:hover {
   background-color: #f4a20b;
 }
+
+.file-upload-icon {
+  color: #f4a20b;
+}
