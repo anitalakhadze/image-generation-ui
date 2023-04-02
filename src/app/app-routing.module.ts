@@ -38,8 +38,8 @@ const routes: Routes = [
     data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
   // {path: 'home', component: HomeComponent, canActivate: [AngularFireAuthGuard], data : { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: '**', redirectTo: 'home'}
+  {path: '', pathMatch: 'full', redirectTo: 'home/stable-diffusion'},
+  {path: '**', redirectTo: 'home/stable-diffusion'}
 ];
 
 @NgModule({

@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
           this.apiLoading = false;
           this.models = data;
           this.imageGenerationForm.controls['model'].setValue(this.models[0]);
-          this.generate(true);
+          // this.generate(true);
         }
       )
   }

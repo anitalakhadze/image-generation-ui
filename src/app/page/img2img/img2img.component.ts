@@ -61,7 +61,8 @@ export class Img2imgComponent implements OnInit {
       prompt: ['hot air balloon', Validators.required],
       negative_prompt: [''],
       num_inference_steps: [20],
-      image_data: [null, Validators.required]
+      image_data: [null, Validators.required],
+      image: []
     });
   }
 
@@ -75,6 +76,7 @@ export class Img2imgComponent implements OnInit {
       this.presentationService.closePresentation();
     }
 
+    this.imageGenerationForm.removeControl('image');
     this.imageGenerationForm.controls['id_token'].setValue(this.id_token);
     console.log(this.imageGenerationForm.value);
 
@@ -97,6 +99,7 @@ export class Img2imgComponent implements OnInit {
     this.imageSrc = undefined;
     this.fileName = 'Choose a file';
     this.imageGenerationForm.controls['image_data'].setValue(null);
+    this.imageGenerationForm.controls['image'].setValue(null);
   }
 
   preview($event: Event) {
