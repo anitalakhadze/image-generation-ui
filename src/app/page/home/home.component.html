@@ -45,7 +45,7 @@
 
         <div class="slider-div">
           <mat-label style="margin-left: 10px">Guidance scale: {{this.imageGenerationForm.controls['guidance_scale'].value}}</mat-label>
-          <mat-slider [max]="50" [min]="1" [step]="0.1" discrete>
+          <mat-slider [max]="25" [min]="1" [step]="0.5" discrete>
             <input matSliderThumb formControlName="guidance_scale">
           </mat-slider>
         </div>
@@ -62,14 +62,14 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Seed</mat-label>
-          <input matInput formControlName="generator" type="number" min="0" max="1000">
+          <input matInput formControlName="generator" type="number" min="-1" max="999999999">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Sampling method</mat-label>
           <mat-select formControlName="scheduler" [(value)]="selectedSamplingMethod">
-            <mat-option *ngFor="let method of samplingMethods" [value]="method">
-              {{method}}
+            <mat-option *ngFor="let method of samplingMethods" [value]="method.value">
+              {{method.displayName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -87,8 +87,8 @@
   <div class="right-container">
 
     <div class="images-container" *ngIf="this.images && !apiLoading">
-      <mat-grid-list cols="2" rowHeight="2.5:2">
-        <mat-grid-tile *ngFor="let image of this.images.images">
+      <mat-grid-list cols="2" rowHeight="275px" [gutterSize]="'30px'">
+        <mat-grid-tile *ngFor="let image of this.images.images" [colspan]="1" [rowspan]="1">
           <input type="image"
                  [height]="275"
                  [width]="300"
@@ -99,8 +99,8 @@
     </div>
 
     <div class="images-container" *ngIf="!this.images || apiLoading">
-      <mat-grid-list cols="2" rowHeight="2.5:2">
-        <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]">
+      <mat-grid-list cols="2" rowHeight="275px" [gutterSize]="'30px'">
+        <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]" [colspan]="1" [rowspan]="1">
           <input type="image"
                  [height]="275"
                  [width]="300"

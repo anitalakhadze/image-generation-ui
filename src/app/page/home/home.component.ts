@@ -15,6 +15,11 @@ export interface Response {
   images: Image[]
 }
 
+interface SamplingMethod {
+  displayName: string,
+  value: string
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,22 +28,22 @@ export interface Response {
 export class HomeComponent implements OnInit {
   imageGenerationForm!: FormGroup;
   models: string[] = [];
-  samplingMethods: string[] = [
-    "DEISMultistepScheduler",
-    "DDIMScheduler",
-    "DDPMScheduler",
-    "HeunDiscreteScheduler",
-    "KDPM2AncestralDiscreteScheduler",
-    "DPMSolverSinglestepScheduler",
-    "EulerDiscreteScheduler",
-    "KDPM2DiscreteScheduler",
-    "DPMSolverMultistepScheduler",
-    "PNDMScheduler",
-    "EulerAncestralDiscreteScheduler"
+  samplingMethods: SamplingMethod[] = [
+    { displayName: 'Euler a', value: 'sample_euler_ancestral'},
+    { displayName: 'Euler', value: 'sample_euler'},
+    { displayName: 'LMS', value: 'sample_lms'},
+    { displayName: 'Heun', value: 'sample_heun'},
+    { displayName: 'DPM2', value: 'sample_dpm_2'},
+    { displayName: 'DPM2 a', value: 'sample_dpm_2_ancestral'},
+    { displayName: 'DPM++ 2S a', value: 'sample_dpmpp_2s_ancestral'},
+    { displayName: 'DPM++ 2M', value: 'sample_dpmpp_2m'},
+    { displayName: 'DPM++ SDE', value: 'sample_dpmpp_sde'},
+    { displayName: 'DPM fast', value: 'sample_dpm_fast'},
+    { displayName: 'DPM adaptive', value: 'sample_dpm_adaptive'}
   ];
 
   selectedModel = this.models[0];
-  selectedSamplingMethod = this.samplingMethods[0];
+  selectedSamplingMethod = this.samplingMethods[0].value;
   id_token = '';
 
   images!: Response;
@@ -84,8 +89,8 @@ export class HomeComponent implements OnInit {
       num_inference_steps: [30, Validators.required],
       guidance_scale: [7, Validators.required],
       negative_prompt: ['bad anatomy, blurry, low quality, bad', Validators.required],
-      generator: [555, Validators.required],
-      scheduler: [this.samplingMethods[0], Validators.required]
+      generator: [-1, Validators.required],
+      scheduler: [this.selectedSamplingMethod, Validators.required]
     });
 
     this.initModels()
