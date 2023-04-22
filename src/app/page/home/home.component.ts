@@ -29,17 +29,17 @@ export class HomeComponent implements OnInit {
   imageGenerationForm!: FormGroup;
   models: string[] = [];
   samplingMethods: SamplingMethod[] = [
-    { displayName: 'Euler a', value: 'sample_euler_ancestral'},
-    { displayName: 'Euler', value: 'sample_euler'},
-    { displayName: 'LMS', value: 'sample_lms'},
-    { displayName: 'Heun', value: 'sample_heun'},
-    { displayName: 'DPM2', value: 'sample_dpm_2'},
-    { displayName: 'DPM2 a', value: 'sample_dpm_2_ancestral'},
-    { displayName: 'DPM++ 2S a', value: 'sample_dpmpp_2s_ancestral'},
-    { displayName: 'DPM++ 2M', value: 'sample_dpmpp_2m'},
-    { displayName: 'DPM++ SDE', value: 'sample_dpmpp_sde'},
-    { displayName: 'DPM fast', value: 'sample_dpm_fast'},
-    { displayName: 'DPM adaptive', value: 'sample_dpm_adaptive'}
+    { displayName: 'Euler a', value: 'EulerAncestralDiscreteScheduler'},
+    { displayName: 'Euler', value: 'EulerDiscreteScheduler'},
+    // { displayName: 'LMS', value: 'sample_lms'},
+    { displayName: 'Heun', value: 'HeunDiscreteScheduler'},
+    { displayName: 'DPM2', value: 'KDPM2DiscreteScheduler'},
+    { displayName: 'DPM2 a', value: 'KDPM2AncestralDiscreteScheduler'},
+    // { displayName: 'DPM++ 2S a', value: 'sample_dpmpp_2s_ancestral'},
+    { displayName: 'DPM++ 2M', value: 'DPMSolverMultistepScheduler'},
+    { displayName: 'DPM++ SDE', value: 'DEISMultistepScheduler'},
+    { displayName: 'DPM fast', value: 'PNDMScheduler'},
+    { displayName: 'DPM adaptive', value: 'DPMSolverSinglestepScheduler'}
   ];
 
   selectedModel = this.models[0];
